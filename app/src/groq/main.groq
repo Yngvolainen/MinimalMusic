@@ -1,0 +1,15 @@
+*[_type == 'record'] {
+            _id,
+            name,
+            sale,
+            slug,
+            releasedIn,
+            image {
+                asset-> {
+                    url
+                }
+            },
+            artist[0]-> {
+                name
+                } 
+            }

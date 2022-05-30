@@ -1,0 +1,15 @@
+*[slug.current == "${this.productSlug}" ][0] {
+                    ...,
+                    artist[0]-> {
+                        name
+                    },
+                    genre[]-> { 
+                        name
+                    },
+                    image {
+                        asset-> {
+                            url
+                        }
+                    },
+                    price,
+                    }

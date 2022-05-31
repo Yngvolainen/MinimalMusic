@@ -1,15 +1,16 @@
-*[_type == 'record'] {
-            _id,
-            name,
-            sale,
-            slug,
-            releasedIn,
-            image {
-                asset-> {
-                    url
-                }
-            },
-            artist[0]-> {
-                name
-                } 
-            }
+*[_type == 'record'] | order(releasedIn desc) |
+    {
+    _id,
+    name,
+    sale,
+    slug,
+    releasedIn,
+    image {
+        asset-> {
+            url
+        }
+    },
+    artist[0]-> {
+        name
+        } 
+    }

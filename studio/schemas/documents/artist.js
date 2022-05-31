@@ -6,12 +6,14 @@ export default {
         {
             title: 'Name of Artist',
             name: 'name',
-            type: 'string'
+            type: 'string',
+            validation: Rule => Rule.required()
         },
         {
             title: 'Portrait / Picture',
             name: 'image',
-            type: 'image'
+            type: 'image',
+            validation: Rule => Rule.required()
         },
         {
             title: 'Releases',

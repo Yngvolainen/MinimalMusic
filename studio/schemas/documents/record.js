@@ -14,12 +14,14 @@ export default {
                         {type: 'artist'}
                     ]
                 }
-            ]
+            ],
+            validation: Rule => Rule.required()
         },
         {
             title: 'Title of record',
             name: 'name',
-            type: 'string'
+            type: 'string',
+            validation: Rule => Rule.required()
         },
         {
             title: 'Slug',
@@ -27,8 +29,9 @@ export default {
             type: 'slug',
             options: {
                 source: doc => `${doc.name} (${doc.releasedIn})`
-                // source: 'name'
-            }
+
+            },
+            validation: Rule => Rule.required()
         },
         {
             title: 'Year',
@@ -37,8 +40,8 @@ export default {
             type: 'number',
             options: {
                 dateFormat: 'YYYY'
-            }
-            
+            },
+            validation: Rule => Rule.required()
         },
         {
             title: 'Genre',
@@ -57,23 +60,18 @@ export default {
             title: 'Description',
             name: 'description',
             type: 'text'
-            // type: 'array',
-            //     of: [{type: 'block'}]
         },
-        // {
-        //     title: 'Cover',
-        //     name: 'cover',
-        //     type: 'image'
-        // },
         {
             title: 'Image',
             name: 'image',
-            type: 'image'
+            type: 'image',
+            validation: Rule => Rule.required()
         },
         {
             title: 'Price',
             name: 'price',
-            type: 'number'
+            type: 'number',
+            validation: Rule => Rule.required()
         },
         {
             title: 'On sale',

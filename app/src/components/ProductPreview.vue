@@ -1,6 +1,7 @@
 <template>
         <section class="productcard">
             <p>{{item[index].artist.name}}</p>
+            
             <div class="productcard__image">
                 <!-- the params denote the product retrieved, no? 🤔 -->
                 <router-link :to="{ name: 'product', params: { theProduct: productSlug }}">

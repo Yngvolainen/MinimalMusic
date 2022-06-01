@@ -10,8 +10,9 @@
       
         <div class="cart__end">
             <p class="cart__total">TOTAL DUE: kr{{totalDue}}.-</p>
+
             <router-link :to="{ name: 'main' }">
-            <button @click="emptyCart">empty cart</button> 
+                <button @click="emptyCart">empty cart</button> 
             </router-link>
         </div>  
     </div>
@@ -26,6 +27,7 @@
         },
         data() {
             return {
+                // GETTERS
                 shoppingcart: this.$store.state.shoppingcart,
             }
         },

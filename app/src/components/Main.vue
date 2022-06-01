@@ -32,8 +32,7 @@
 			async getRecords() {
 				this.result = await sanity.fetch(query)
 				this.productsLoaded = true
-				// console.log(this.result)
-			},
+			}
         }
     }
 
@@ -64,6 +63,5 @@
         .main__products {
             grid-template-columns: repeat(1, 1fr);
         }
-
 }
 </style>

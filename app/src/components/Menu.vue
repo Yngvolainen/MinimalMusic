@@ -5,10 +5,14 @@
 
             <button @click="$emit('closeMenu')"> <img src="/images/album.svg" alt=""> </button>
         </div>
+        
         <ul>
             <li>sorting</li>
+
             <li>should</li>
+
             <li>be an</li>
+
             <li>option</li>
         </ul>
     </menu>

@@ -3,16 +3,22 @@
         <div class="product__image">
             <img :src="result.image.asset.url" alt="product image">
         </div>
+
         <div class="product__description">
             <router-link :to="{name: 'main'}">{{`${'<---'}`}}</router-link>
+
             <h2>{{result.artist.name}}</h2>
+
             <h3>{{result.name}}</h3>
+
             <div class="product__price">
                 <p>{{`kr${result.price}.-`}}</p>
+
                 <button @click="addToCart">
                     <img class="product__add" src="/images/shopping-cart-add-black.svg" alt="add to cart">
                 </button>
             </div>
+
             <div class="product__text">{{result.description}}</div>
         </div>
     </section>
@@ -72,7 +78,6 @@
                 this.result = await sanity.fetch(query, params)
             },  
             addToCart() {
-                // console.log(this.result)
                 this.$store.commit('addToCart', this.result)
             }
         }

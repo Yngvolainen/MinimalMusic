@@ -2,14 +2,18 @@
     <div class="cartpreview">
         <div class="cartpreview__header">
             <h2>Cartface</h2>
+
             <button @click="$emit('close-cart')"> <img src="/images/album.svg" alt="close cart preview"></button>
         </div>
+
         <div v-if="cartItems.length === 0">
             <p>Your shopping cart is empty</p>
         </div>
+
         <div v-else>
             <div v-for="item in cartItems" :key="item._id" class="cartpreview__list">
                 <img :src="item.image.asset.url" alt="cover graphics">
+                
                 <p>{{item.name}}</p>
             </div>
           

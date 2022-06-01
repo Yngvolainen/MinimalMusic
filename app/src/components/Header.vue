@@ -3,15 +3,18 @@
         <div>
             <button @click="toggleMenu" >|menu|</button>
         </div>
+
         <h1>
             <router-link :to="{ name: 'main' }">minimal | music</router-link>
         </h1>
+
         <div>
             <button class="header__cartnumber" @close-cart="toggleCart" @click="toggleCart">{{`${'|'.repeat(this.$store.getters.getCartItems.length)}|cart|`}}</button>
         </div>
     </header>
     
     <Menu v-if="menuVisible" @close-menu="toggleMenu" />
+
     <CartPreview v-if="cartVisible" @close-cart="toggleCart" />
 </template>
 
@@ -63,9 +66,9 @@ export default {
         color: black;
     }
 
-    @media screen and (max-width: 416px){
+    /* @media screen and (max-width: 416px){
         .header {
             
         }
-    }
+    } */
 </style>

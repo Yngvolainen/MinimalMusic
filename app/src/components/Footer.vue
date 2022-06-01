@@ -13,10 +13,14 @@
                 facespace
             </li>
         </ul>
-        <div>
-            <label for="email">Join our newsletter</label><br>
+
+        <form>
+            <label for="email">Join our newsletter</label>
+
+            <br>
+
             <input type="email" name="email">
-        </div>
+        </form>
     </footer>
 </template>
 
@@ -29,7 +33,6 @@ export default {
 <style>
     footer {
         width: 100%;
-        /* height: 100px; */
         background: black;
         color: white;
         padding: 1rem 0;

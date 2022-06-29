@@ -5,7 +5,10 @@
         </div>
 
         <div class="product__description">
-            <router-link :to="{name: 'main'}">{{`${'<---'}`}}</router-link>
+            <button>
+                <!-- <router-link :to="{name: 'main'}">{{`${'<---'}`}}</router-link> -->
+                <router-link :to="{name: 'main'}"><img src="/images/back-arrow-black.svg" alt="return to main page"></router-link>
+            </button>
 
             <h2>{{result.artist.name}}</h2>
 
@@ -26,6 +29,7 @@
 
 <script>
     import sanity from '../client.js'
+    import query from '../groq/product.groq?raw'
     // import query from '../groq/product.groq?raw'
 
     export default {
@@ -53,32 +57,14 @@
         },
         methods: {
             async getProduct() {
-                const query = `*[slug.current == $productSlug][0] {
-                                ...,
-                                _id,
-                                artist[0]-> {
-                                    name
-                                },
-                                genre[]-> { 
-                                    name
-                                },
-                                image {
-                                    asset-> {
-                                        url
-                                    }
-                                },
-                                price,
-                                description,
-                                }`;
-
                 const params = {
                     productSlug: this.productSlug
                 };
-
+                // query imported from ../groq/product.groq, see above
                 this.result = await sanity.fetch(query, params)
             },  
             addToCart() {
-                this.$store.commit('addToCart', this.result)
+                this.$store.dispatch('runAddToCart', this.result)
             }
         }
     }
@@ -86,6 +72,7 @@
 
 <style>
     .product {
+        min-height: 75vh;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-evenly;
@@ -96,9 +83,10 @@
     }
 
     .product__description :nth-child(1){
-        text-decoration: none;
-        color: inherit;
- 
+        /* text-decoration: none; */
+        /* color: inherit; */
+        height: 2rem;
+        margin-bottom: 1rem;
     }
 
     .product__image {
@@ -113,7 +101,7 @@
     }
 
     .product__add {
-        height: 1.5rem;
+        height: 2rem;
     }
 
     .product__text {

@@ -1,15 +1,25 @@
 <template>
-    <div v-if="shoppingcart.length === 0">
+    <div v-if="shoppingcart.length === 0" class="cart--empty">
         <p>Your shopping cart is empty</p>
+
+        <button>
+            <router-link :to="{name: 'main'}"><img src="/images/back-arrow-black.svg" alt="return to main page"></router-link>
+        </button>
     </div>
   
     <div v-else class="cart">
-        <h3 class="cart__header">ITEMS IN YOUR CART</h3>
+        <div class="cart__header">
+            <h3>items in your cart:</h3>
+
+            <button>
+                 <router-link :to="{name: 'main'}"><img src="/images/back-arrow-black.svg" alt="return to main page"></router-link>
+            </button>
+        </div>
 
         <CartItems class="cart__list" v-for="item in shoppingcart" :item="item"></CartItems>
       
         <div class="cart__end">
-            <p class="cart__total">TOTAL DUE: kr{{totalDue}}.-</p>
+            <p class="cart__total">total due: kr{{totalDue}}.-</p>
 
             <router-link :to="{ name: 'main' }">
                 <button @click="emptyCart">empty cart</button> 
@@ -40,7 +50,7 @@
         },
         methods: {
             emptyCart() {
-                this.$store.commit('emptyCart')
+                this.$store.dispatch('runEmptyCart')
             }
         }
     }
@@ -50,23 +60,40 @@
     .cart {
         margin: 0 auto;
         width: 75%;
+        min-height: 75vh;
+    }
+
+    .cart--empty {
+        text-align: center;
+        padding-top: 5rem;
+        min-height: 75vh;
+    }
+
+    .cart--empty button img {
+        margin-top: 1rem;
+        height: 2rem;
     }
 
     .cart__header {
-        margin-bottom: 10px;
+        margin-bottom: 2rem;
+    }
+
+    .cart__header button img {
+        height: 2rem;
     }
 
     .cart__list{
         margin-top: 1rem;
     }
 
-    .cart__end {
+    .cart__end,
+    .cart__header 
+    {
         display: flex;
-        align-items: flex-end;
         justify-content: space-between;
     }
 
-    .cart__total {
+    .cart__end {
         margin-top: 2rem;
     }
 </style>

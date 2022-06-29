@@ -1,15 +1,17 @@
-*[slug.current == "${this.productSlug}" ][0] {
-                    ...,
-                    artist[0]-> {
-                        name
-                    },
-                    genre[]-> { 
-                        name
-                    },
-                    image {
-                        asset-> {
-                            url
-                        }
-                    },
-                    price,
-                    }
+*[slug.current == $productSlug][0] {
+    ...,
+    _id,
+    artist[0]-> {
+        name
+    },
+    genre[]-> { 
+        name
+    },
+    image {
+        asset-> {
+            url
+        }
+    },
+    price,
+    description,
+    }

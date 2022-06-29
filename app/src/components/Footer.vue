@@ -39,8 +39,8 @@ export default {
         display: flex;
         justify-content: space-around;
         margin-top: 50px;
-        position: sticky;
-        bottom: 0;
+        /* position: sticky; */
+        /* bottom: 0; */
     }
 
     footer li {

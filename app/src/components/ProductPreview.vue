@@ -1,6 +1,6 @@
 <template>
         <section class="productcard">
-            <p>{{item[index].artist.name}}</p>
+            <p class="">{{item[index].artist.name}}</p>
             
             <div class="productcard__image">
                 <!-- the params denote the product retrieved, no? 🤔 -->
@@ -10,14 +10,12 @@
                     <div class="productcard__sale" v-if="item[index].sale === true">
                         <img src="/images/sale.svg" alt="on sale">
                     </div>
-    
                 </router-link>
             </div>
 
             <p>{{item[index].name}}</p>
 
             <p>{{item[index].releasedIn}}</p>
-  
         </section>
    
 </template>
@@ -42,18 +40,16 @@ export default {
     .productcard {
         border: thin solid #eee;
         border-radius: 5px;
-        width: 280px;
+        width: 375px;
         padding: 1rem;
-    }
-
-    .productcard__image {
+        /* this position to ensure the sale-sticker appears where it should */
         position: relative;
     }
 
     .productcard__sale {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: -10px;
+        left: -10px;
     }
 
     .productcard__buy {

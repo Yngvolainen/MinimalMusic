@@ -40,7 +40,7 @@ export default {
         toggleCart() {
             this.cartVisible = !this.cartVisible
         }
-    }
+    },
 }
 </script>
 
@@ -66,9 +66,9 @@ export default {
         color: black;
     }
 
-    /* @media screen and (max-width: 416px){
-        .header {
-            
+    @media screen and (max-width: 780px){
+        .header h1 {
+            font-size: 1.6rem;
         }
-    } */
+    }
 </style>

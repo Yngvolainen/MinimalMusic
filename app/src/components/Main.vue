@@ -1,6 +1,6 @@
 <template>
-    <main v-if="!productsLoaded">
-        <h2>LOADING ALL THE STUFF</h2>
+    <main v-if="!productsLoaded" class="main main--loading">
+        <h2>loading</h2>
     </main>
 
     <main v-else class="main">
@@ -22,7 +22,9 @@
         data() {
             return {
                 result: null,
-                productsLoaded: false
+                productsLoaded: false,
+                sortOrder: this.$store.state.sortOrder,
+                sortBy: this.$store.state.sortBy
             }
         },
         created() {
@@ -30,9 +32,13 @@
         },
         methods: {
 			async getRecords() {
-				this.result = await sanity.fetch(query)
+                // let params = this.$store.state.sortOrder
+				this.result = await sanity.fetch(this.sortBy)
 				this.productsLoaded = true
 			}
+        },
+        computed() {
+                this.sortBy = this.$store.state.sortBy
         }
     }
 
@@ -41,9 +47,14 @@
 <style>
 	.main {
 		width: 100%;
+        min-height: 75vh;
 		text-align: center;
-		min-height: min-content;
+        padding: 1rem;
 	}
+
+    .main--loading {
+        padding-top: 5rem;
+    }
 
 	.main__products {
 		display: grid;
@@ -53,13 +64,13 @@
 	}
 
     /* F**k it, we're going desktop first! 😬*/
-    @media screen and (max-width: 940px){
+    @media screen and (max-width: 1200px){
         .main__products {
             grid-template-columns: repeat(2, 1fr);
         }
     }   
 
-    @media screen and (max-width: 640px){
+    @media screen and (max-width: 800px){
         .main__products {
             grid-template-columns: repeat(1, 1fr);
         }

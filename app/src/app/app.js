@@ -8,6 +8,7 @@ import store from '../store.js'
 import routes from '../routes.js';
 
 const app_store = createStore(store);
+// const app_state = mapState(store);
 const app_router = createRouter({
 	routes: routes,
 	history: createWebHistory()
@@ -15,5 +16,6 @@ const app_router = createRouter({
 
 createApp(App)
 	.use(app_store)
+	// .use(app_state)
 	.use(app_router)
 	.mount('#app');

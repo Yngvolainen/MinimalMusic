@@ -1,19 +1,18 @@
 <template>
     <menu class="menu">
         <div class="menu__header">
-            <h2>MENUUUUU</h2>
+            <h2>|menu|</h2>
 
-            <button @click="$emit('closeMenu')"> <img src="/images/album.svg" alt=""> </button>
+            <button class="menu__close-button" @click="$emit('closeMenu')">
+                <img src="/images/close-button-white.svg" alt="close menu"> 
+            </button>
         </div>
         
         <ul>
-            <li>sorting</li>
+            <li>sorting will be available soon</li>
+            <!-- <li @click="sortByDate">sort by date</li>
 
-            <li>should</li>
-
-            <li>be an</li>
-
-            <li>option</li>
+            <li @click="sortByName">sort by name</li> -->
         </ul>
     </menu>
 </template>
@@ -24,6 +23,16 @@ export default {
         return {
 
         }
+    },
+    methods: {
+        sortByDate() {
+            console.log('clicked date')
+            this.$store.dispatch('runChangeSort', 'byDate' )
+        },
+        sortByName() {
+            console.log('clicked name')
+            this.$store.dispatch('runChangeSort', 'byName')
+        }
     }
 }
 </script>
@@ -31,13 +40,14 @@ export default {
 <style>
     .menu {
     position: fixed;
-    top: 30px;
+    top: 40px;
     left: 10px;
     padding: 10px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     height: fit-content;
     width: fit-content;
+    min-width: 200px;
     border-radius: 5px;
     z-index: 3;
     }
@@ -48,12 +58,9 @@ export default {
         justify-content: space-between;
     }
 
-    .menu__header button {
-        margin-left: 15px;
-    }
-
-    .menu__header button img{
-        height: 2rem; 
+    .menu__close-button img{
+        padding-right: 0.3rem;
+        height: 1.2rem; 
     }
 
     .menu ul li {

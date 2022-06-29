@@ -1,7 +1,12 @@
+import byName from './groq/alphabeticalsort.groq?raw'
+import byDate from './groq/main.groq?raw'
+
 export default {
 	state() {
 		return {
 			shoppingcart: [],
+			sortOrder: 'asc',
+			sortBy: byName
 		};
 	},
 	getters: {
@@ -10,7 +15,10 @@ export default {
 		}
 	},
 	mutations: {
-	
+		changeSort(state, sorting) {
+			state.sortBy = sorting
+			console.log('reached store')
+		},
 		addToCart(state, item) {
 			let productId = item._id;
 
@@ -47,6 +55,20 @@ export default {
 			// doing it twice for good measure
 			state.shoppingcart = []
 		}
+	},
+	actions: {
+		runAddToCart(store, item) {
+			store.commit('addToCart', item)
+		},
+		runEmptyCart(store) {
+			store.commit('emptyCart')
+		},
+		runChangeSort(store, sorting) {
+			store.commit('changeSort', sorting)
+		},
+		runRemoveFromCart(store, item) {
+			store.commit('removeFromCart', item)
+		},
 	}
 };
 

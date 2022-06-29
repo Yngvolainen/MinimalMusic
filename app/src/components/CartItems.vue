@@ -1,5 +1,4 @@
 <template>
-
     <div class="cartitems">
         <img :src="item.image.asset.url" alt="">
 
@@ -9,10 +8,10 @@
         
         <p class="cartitems__price">{{`kr${item.price}.-`}}</p>
         
-        <div class="cartitems__amount">
+        <div class="cartitems__adjust">
             <button @click="removeOne(item)">-</button>
 
-            <p class="cartitems__number">x{{item.amount}}</p>
+            <p class="cartitems__amount">x{{item.amount}}</p>
 
             <button @click="addOne(item)">+</button>
         </div>
@@ -29,10 +28,10 @@
         },
         methods: {
             removeOne(item) {
-                this.$store.commit('removeFromCart', item)
+                this.$store.dispatch('runRemoveFromCart', item)
             },
             addOne(item) {
-                this.$store.commit('addToCart', item)
+                this.$store.dispatch('runAddToCart', item)
             }
         }
     }
@@ -43,6 +42,8 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
     }
 
     .cartitems img {
@@ -50,22 +51,36 @@
     }
 
     .cartitems p {
-        margin-left: 2rem;
+        margin-right: 1rem;
     }
 
     .cartitems__price {
-        right: 0;
+        /* right: 0; */
         justify-self: end;
     }
 
-    .cartitems__amount {
+    .cartitems__adjust {
         display: flex;
-        margin-left: 5rem;
+        justify-self: end;
+        /* margin-left: 5rem; */
     }
 
-    .cartitems__number {
-        padding: 0 2rem;
+    .cartitems__amount {
+        padding: 0 1rem;
     }
-    
+
+    @media screen and (max-width: 780px){
+        .cartitems {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .cartitems__price {
+            grid-column: 2;
+            justify-self: start;
+        }
+        .cartitems__adjust {
+            grid-column: 3;
+            justify-self: start;
+        }
+    }
     
 </style>

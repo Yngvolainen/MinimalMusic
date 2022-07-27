@@ -1,0 +1,24 @@
+*[_type == 'artist']
+    {
+    _id,
+    name,
+    slug,
+    image {
+        asset-> {
+          url
+        }
+    },
+    bio,
+    genre[]->,
+    releases[]-> {
+        name,
+        slug { 
+          current
+        },
+        image {
+          asset-> {
+            url,
+            }
+          }
+        },
+}

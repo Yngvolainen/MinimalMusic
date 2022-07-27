@@ -13,7 +13,7 @@
 <style>
     .productcard__sale {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: -10px;
+        left: -10px;
     }
 </style>

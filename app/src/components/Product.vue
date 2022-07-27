@@ -6,7 +6,6 @@
 
         <div class="product__description">
             <button>
-                <!-- <router-link :to="{name: 'main'}">{{`${'<---'}`}}</router-link> -->
                 <router-link :to="{name: 'main'}"><img src="/images/back-arrow-black.svg" alt="return to main page"></router-link>
             </button>
 
@@ -30,7 +29,6 @@
 <script>
     import sanity from '../client.js'
     import query from '../groq/product.groq?raw'
-    // import query from '../groq/product.groq?raw'
 
     export default {
         data() {

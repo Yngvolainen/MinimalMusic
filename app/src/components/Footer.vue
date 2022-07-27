@@ -2,25 +2,28 @@
     <footer>
         <ul>
             <li>
-                youbook
+                Other websites by me:
             </li>
-        
+            <br>
             <li>
-                instatube
+                <a href="https://ze-weather-app.netlify.app">The weather app</a>
             </li>
       
             <li>
-                facespace
+                <a href="https://cur-ex-2000.netlify.app/">Currency exchanger 2000</a>
             </li>
         </ul>
 
-        <form>
+        <div>
+            <p>© Yngve Jøsevold</p>
+        </div>
+        <!-- <form>
             <label for="email">Join our newsletter</label>
 
             <br>
 
             <input type="email" name="email">
-        </form>
+        </form> -->
     </footer>
 </template>
 

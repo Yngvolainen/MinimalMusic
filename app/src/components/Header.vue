@@ -50,20 +50,15 @@ export default {
         width: 100%;
         position: sticky;
         top: 0;
-        padding: 10px;
+        padding: 0.2rem 1rem;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
         z-index: 2;
     }
 
     header h1 {
         font-family: 'Quicksand', sans-serif;
-    }
-
-    header h1 a {
-        text-decoration: none;
-        color: black;
     }
 
     @media screen and (max-width: 780px){

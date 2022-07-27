@@ -16,6 +16,16 @@ export default {
             validation: Rule => Rule.required()
         },
         {
+            title: 'Slug',
+            name: 'slug',
+            type: 'slug',
+            options: {
+                source: doc => `${doc.name}`
+
+            },
+            validation: Rule => Rule.required()
+        },
+        {
             title: 'Releases',
             name: 'releases',
             type: 'array',

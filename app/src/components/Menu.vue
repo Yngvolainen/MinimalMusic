@@ -9,10 +9,13 @@
         </div>
         
         <ul>
-            <li>sorting will be available soon</li>
-            <!-- <li @click="sortByDate">sort by date</li>
+            <li @click="$emit('closeMenu'), browseCategory('records'), goToMain()">browse records</li>
 
-            <li @click="sortByName">sort by name</li> -->
+            <li @click="$emit('closeMenu'), browseCategory('artists'), goToMain()">browse artists</li>
+
+            <li>
+                <router-link :to="{ name: 'about'}" @click="$emit('closeMenu')">about us</router-link>
+            </li>
         </ul>
     </menu>
 </template>
@@ -25,13 +28,11 @@ export default {
         }
     },
     methods: {
-        sortByDate() {
-            console.log('clicked date')
-            this.$store.dispatch('runChangeSort', 'byDate' )
+        browseCategory(category) {
+            this.$store.dispatch('runChangeBrowseCategory', category)
         },
-        sortByName() {
-            console.log('clicked name')
-            this.$store.dispatch('runChangeSort', 'byName')
+        goToMain() {
+            this.$router.push({name: 'main'})
         }
     }
 }

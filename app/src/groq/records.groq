@@ -3,7 +3,9 @@
     _id,
     name,
     sale,
-    slug,
+    slug {
+      current
+    },
     releasedIn,
     image {
         asset-> {

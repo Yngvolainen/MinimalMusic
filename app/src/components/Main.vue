@@ -3,42 +3,37 @@
         <h2>loading</h2>
     </main>
 
-    <main v-else class="main">
-        <div class="main__products" >
-            <ProductPreview v-for="(item, index) in result" :key="index" :item="result" :index="index"/>
-        </div>
+    <main v-else-if="browseBy === 'records'" class="main">
+        <ProductPreview />
     </main>
+
+    <main v-else-if="browseBy === 'artists'" class="main">
+        <ArtistPreview />
+    </main>
+
 </template>
 
 <script>
     import ProductPreview from './ProductPreview.vue'
-    import sanity from '../client.js'
-    import query from '../groq/main.groq?raw'
+    import ArtistPreview from './ArtistPreview.vue'
 
     export default {
         components: {
-            ProductPreview
+            ProductPreview,
+            ArtistPreview
         },
         data() {
             return {
-                result: null,
-                productsLoaded: false,
-                sortOrder: this.$store.state.sortOrder,
-                sortBy: this.$store.state.sortBy
+                productsLoaded: true,
             }
         },
         created() {
-            this.getRecords()
+            // this.getRecords()
         },
-        methods: {
-			async getRecords() {
-                // let params = this.$store.state.sortOrder
-				this.result = await sanity.fetch(this.sortBy)
-				this.productsLoaded = true
-			}
-        },
-        computed() {
-                this.sortBy = this.$store.state.sortBy
+        computed: {
+            browseBy() {
+                return this.$store.getters.getBrowseBy
+            }
         }
     }
 
@@ -55,24 +50,4 @@
     .main--loading {
         padding-top: 5rem;
     }
-
-	.main__products {
-		display: grid;
-        grid-template-columns: repeat(3, 1fr);
-		justify-items: center;
-        grid-gap: 2rem;
-	}
-
-    /* F**k it, we're going desktop first! 😬*/
-    @media screen and (max-width: 1200px){
-        .main__products {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }   
-
-    @media screen and (max-width: 800px){
-        .main__products {
-            grid-template-columns: repeat(1, 1fr);
-        }
-}
 </style>

@@ -1,23 +1,35 @@
-import byName from './groq/alphabeticalsort.groq?raw'
-import byDate from './groq/main.groq?raw'
-
 export default {
 	state() {
 		return {
 			shoppingcart: [],
-			sortOrder: 'asc',
-			sortBy: byName
+			browseBy: 'records'
 		};
 	},
 	getters: {
 		getCartItems(state) {
 			return state.shoppingcart
+		},
+		getBrowseBy(state) {
+			return state.browseBy
+		}
+	},
+	actions: {
+		runAddToCart(store, item) {
+			store.commit('addToCart', item)
+		},
+		runChangeBrowseCategory(store, category) {
+			store.commit('changeBrowseCategory', category)
+		},
+		runEmptyCart(store) {
+			store.commit('emptyCart')
+		},
+		runChangeSort(store, sorting) {
+			store.commit('changeSort', sorting)
 		}
 	},
 	mutations: {
-		changeSort(state, sorting) {
-			state.sortBy = sorting
-			console.log('reached store')
+		changeBrowseCategory(state, category) {
+			state.browseBy = category
 		},
 		addToCart(state, item) {
 			let productId = item._id;
@@ -55,20 +67,6 @@ export default {
 			// doing it twice for good measure
 			state.shoppingcart = []
 		}
-	},
-	actions: {
-		runAddToCart(store, item) {
-			store.commit('addToCart', item)
-		},
-		runEmptyCart(store) {
-			store.commit('emptyCart')
-		},
-		runChangeSort(store, sorting) {
-			store.commit('changeSort', sorting)
-		},
-		runRemoveFromCart(store, item) {
-			store.commit('removeFromCart', item)
-		},
 	}
 };
 

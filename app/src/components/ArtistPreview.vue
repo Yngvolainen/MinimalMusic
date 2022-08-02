@@ -1,23 +1,16 @@
 <template>
-    <div class="productpreview">
+    <div class="artistpreview">
         <div v-for="(item, index) in result" :key="index">
-            <section class="productcard">
-                <p class="">{{item.artist.name}}</p>
+            <section class="artistcard">
+                <p class="">{{item.name}}</p>
                 
-                <div class="productcard__image">
+                <div class="artistcard__image">
                     <!-- the params denote the product retrieved, no? 🤔 -->
-                    <router-link :to="{ name: 'product', params: { theProduct: item.slug.current }}">
+                    <!-- <router-link :to="{ name: 'product', params: { theProduct: item.slug.current }}"> -->
                         <img :src="item.image.asset.url" alt="picture of record/artist">
 
-                        <div class="productcard__sale" v-if="item.sale === true">
-                            <img src="/images/sale.svg" alt="on sale">
-                        </div>
-                    </router-link>
+                    <!-- </router-link> -->
                 </div>
-
-                <p>{{item.name}}</p>
-
-                <p>{{item.releasedIn}}</p>
             </section>
         </div>
     </div>
@@ -25,20 +18,19 @@
 
 <script>
 import sanity from '../client.js'
-import query from '../groq/records.groq?raw'
+import query from '../groq/artists.groq?raw'
 
 export default {
-
     data() {
         return {
             result: null,
         }
     },
     async created() {
-        await this.getRecords()
+        await this.getArtists()
     },
     methods: {
-        async getRecords() {
+        async getArtists() {
             this.result = await sanity.fetch(query)
         }
     },
@@ -46,22 +38,14 @@ export default {
 </script>
 
 <style>
-    .productcard {
+    .artistcard {
         border: thin solid #eee;
         border-radius: 5px;
         width: 375px;
         padding: 1rem;
-        /* this position to ensure the sale-sticker appears where it should */
-        position: relative;
     }
 
-    .productcard__sale {
-        position: absolute;
-        top: -10px;
-        left: -10px;
-    }
-
-    .productpreview {
+    .artistpreview {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
@@ -70,13 +54,13 @@ export default {
 
     /* F**k it, we're going desktop first! 😬*/
     @media screen and (max-width: 1200px){
-        .productpreview {
+        .artistpreview {
             grid-template-columns: repeat(2, 1fr);
         }
     }   
 
     @media screen and (max-width: 800px){
-        .productpreview {
+        .artistpreview {
             grid-template-columns: repeat(1, 1fr);
         }
     }

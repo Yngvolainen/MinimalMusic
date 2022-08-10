@@ -17,6 +17,9 @@ export default {
 		runAddToCart(store, item) {
 			store.commit('addToCart', item)
 		},
+		runRemoveFromCart(store, item) {
+			store.commit('removeFromCart', item)
+		},
 		runChangeBrowseCategory(store, category) {
 			store.commit('changeBrowseCategory', category)
 		},

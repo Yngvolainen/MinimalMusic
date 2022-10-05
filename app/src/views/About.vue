@@ -1,7 +1,9 @@
 <template>
-    <div class="about">
-        this is an about page...
-    </div>
+    <section class="about">
+        <p class="about__text">
+            An exercise in using Sanity CMS. 
+        </p>
+    </section>
 </template>
 
 <script>
@@ -12,9 +14,13 @@ export default {
 
 <style>
 	.about {
-		width: 100%;
         min-height: 75vh;
-		text-align: center;
         padding: 1rem;
 	}
+
+    .about__text {
+        text-align: center;
+		width: 100%;
+        /* max-width: 50ch; */
+    }
 </style>

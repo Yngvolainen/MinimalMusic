@@ -6,8 +6,10 @@ import Cart from './components/Cart.vue';
 
 export default [
 
-	{ name: 'main', path: '/', component: Main},
+	{ name: 'main', path: '/', component: Main },
 	{ name: 'about', path: '/about', component: About},
-	{ name: 'product', path: '/main/:theProduct', component: Product},
-	{ name: 'cart', path: '/cart', component: Cart}
+	{ name: 'cart', path: '/cart', component: Cart},
+	
+	{ name: 'product', path: '/records/:theProduct', component: Product},
+	{ name: 'artist', path: '/artist/:theArtist', component: Main},
 ];

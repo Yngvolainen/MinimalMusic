@@ -1,0 +1,24 @@
+*[_type == 'artist' && name == $artistname]
+    {
+    ...,
+    _id,
+    name,
+    sale,
+    slug {
+      current
+    },
+    releasedIn,
+    image { 
+       asset-> {
+            url
+        }
+    },
+    releases[]-> {
+        ...,
+           image { 
+                asset-> {
+            url
+        }
+    },
+    }
+}

@@ -9,7 +9,8 @@
         </div>
         
         <ul>
-            <li @click="$emit('closeMenu'), browseCategory('records'), goToMain()">browse records</li>
+            <li @click="resetArtist(), browseCategory('records'), goToMain(), $emit('closeMenu')">browse records</li>
+            <!-- <li @click="browseRecords(), $emit('closeMenu')">browse records</li> -->
 
             <li @click="$emit('closeMenu'), browseCategory('artists'), goToMain()">browse artists</li>
 
@@ -21,18 +22,28 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
-
+       
         }
     },
     methods: {
+        // browseRecords() {
+        //     this.resetArtist()
+        //     setTimeout(console.log('jeje'), 100)
+        //     this.browseCategory('records')
+        //     this.goToMain()
+        // },
         browseCategory(category) {
             this.$store.dispatch('runChangeBrowseCategory', category)
         },
         goToMain() {
             this.$router.push({name: 'main'})
+        },
+        resetArtist() {
+            this.$store.state.artistParams = null
         }
     }
 }

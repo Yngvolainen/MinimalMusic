@@ -1,4 +1,4 @@
-*[_type == 'artist']
+*[_type == 'artist']  | order(name asc) |
     {
     _id,
     name,

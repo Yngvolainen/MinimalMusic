@@ -1,15 +1,18 @@
 <template>
     <div class="artistpreview">
         <div v-for="(item, index) in result" :key="index">
-            <section class="artistcard">
+            <section class="artistpreview__card">
                 <p class="">{{item.name}}</p>
                 
-                <div class="artistcard__image">
+                <div class="artistpreview__image">
                     <!-- the params denote the product retrieved, no? 🤔 -->
-                    <!-- <router-link :to="{ name: 'product', params: { theProduct: item.slug.current }}"> -->
-                        <img :src="item.image.asset.url" alt="picture of record/artist">
+                    <!-- <button @click="chooseArtist(index)">
+                        <img :src="item.image.asset.url" alt="picture of artist">
+                    </button> -->
 
-                    <!-- </router-link> -->
+                    <router-link @click="chooseArtist(index)" :to="{name: 'artist', params: {theArtist: item.slug.current}}">
+                        <img :src="item.image.asset.url" alt="picture of artist">
+                    </router-link>
                 </div>
             </section>
         </div>
@@ -24,6 +27,7 @@ export default {
     data() {
         return {
             result: null,
+            artistParams: ''
         }
     },
     async created() {
@@ -32,13 +36,21 @@ export default {
     methods: {
         async getArtists() {
             this.result = await sanity.fetch(query)
+            console.log(this.result)
+        },
+        chooseArtist(index) {
+            this.$store.state.artistParams = this.result[index].name
+            this.$store.state.artistResult = this.result[index]
+            // console.log(this.$store.state.artistParams)
+            this.$store.state.browseBy = "records"
+            // this.$router.push({name: 'main', params: this.result[index].name})
         }
     },
 }
 </script>
 
 <style>
-    .artistcard {
+    .artistpreview__card {
         border: thin solid #eee;
         border-radius: 5px;
         width: 375px;

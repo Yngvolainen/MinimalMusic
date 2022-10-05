@@ -1,0 +1,18 @@
+*[_type == 'record' && name == $artistname]
+    {
+    _id,
+    name,
+    sale,
+    slug {
+      current
+    },
+    releasedIn,
+    image {
+        asset-> {
+            url
+        }
+    },
+    artist[0]-> {
+        name
+        } 
+    }

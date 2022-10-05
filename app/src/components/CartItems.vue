@@ -11,7 +11,7 @@
         <div class="cartitems__adjust">
             <button @click="removeOne(item)">-</button>
 
-            <p class="cartitems__amount">x{{item.amount}}</p>
+            <p class="cartitems__amount">{{item.amount}}</p>
 
             <button @click="addOne(item)">+</button>
         </div>
@@ -55,14 +55,22 @@
     }
 
     .cartitems__price {
-        /* right: 0; */
+        /* margin-right: 2rem; */
         justify-self: end;
     }
 
     .cartitems__adjust {
-        display: flex;
-        justify-self: end;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* justify-self: end; */
         /* margin-left: 5rem; */
+    }
+
+    .cartitems__adjust button {
+        border: 1px solid gray;
+        border-radius: 3px;
+        height: 2rem;
+        width: 2rem; 
     }
 
     .cartitems__amount {

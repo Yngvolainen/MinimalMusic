@@ -70,6 +70,7 @@
 
 <style>
     .product {
+        margin-top: 2rem;
         min-height: 75vh;
         display: flex;
         flex-flow: row nowrap;
@@ -89,6 +90,7 @@
 
     .product__image {
         width: 35%;
+        max-width: 400px;
     }
 
     .product__price {
@@ -105,5 +107,17 @@
     .product__text {
         margin-top: 2rem;
   
+    }
+
+    @media screen and (max-width: 800px){
+        .product {
+            flex-flow: column;
+            align-items: center;
+        }
+
+        .product__image {
+            width: 75%;
+            max-width: 400px;
+        }
     }
 </style>

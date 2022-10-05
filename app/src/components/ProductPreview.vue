@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <Artist v-if="this.$store.state.artistParams" />
+    </div>
     <div class="productpreview">
         <div v-for="(item, index) in result" :key="index">
             <section class="productcard">
@@ -25,23 +28,40 @@
 
 <script>
 import sanity from '../client.js'
-import query from '../groq/records.groq?raw'
+import allRecords from '../groq/records.groq?raw'
+import recordsByArtist from '../groq/recordsByArtist.groq?raw'
+import Artist from './Artist.vue'
+// import recordsWithParams from '../groq/recordsWithParams.groq?raw'
 
 export default {
-
+    components: {Artist},
     data() {
         return {
             result: null,
-        }
+            params: this.$store.state.artistParams,
+            slug: null
+        };
     },
-    async created() {
-        await this.getRecords()
+    created() {
+        // await this.getParams();
+        this.getRecords();
     },
     methods: {
         async getRecords() {
-            this.result = await sanity.fetch(query)
+            // If no artist is selected, retrieve all records
+            if (this.params === null) {
+                this.result = await sanity.fetch(allRecords);
+                console.log(this.result);
+            }
+            // if an artist has been selected, only get records from that artist
+            else {
+                let res = await sanity.fetch(recordsByArtist, { artistname: this.params })
+                this.result = res[0].releases
+                console.log(this.result);
+                
+            }
         }
-    },
+    }
 }
 </script>
 

@@ -2,7 +2,9 @@ export default {
 	state() {
 		return {
 			shoppingcart: [],
-			browseBy: 'records'
+			browseBy: 'records',
+			artistParams: null,
+			artistResult: null,
 		};
 	},
 	getters: {
@@ -11,8 +13,11 @@ export default {
 		},
 		getBrowseBy(state) {
 			return state.browseBy
+		},
+		getArtistParams(state) {
+			return state.artistParams
 		}
-	},
+ 	},
 	actions: {
 		runAddToCart(store, item) {
 			store.commit('addToCart', item)

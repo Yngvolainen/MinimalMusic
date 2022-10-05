@@ -77,5 +77,6 @@ export default {
 
     .menu ul li {
         list-style: none;
+        cursor: pointer;
     }
 </style>
